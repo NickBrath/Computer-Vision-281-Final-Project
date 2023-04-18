@@ -2,3 +2,6 @@ models/checkpoints/model_checkpoint.h5
 models/*
 id_ed25519_berkeley*
 logs/*
+notebooks/logs/*
+notebooks/models/*
+notebooks/model_weights/*
