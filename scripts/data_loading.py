@@ -1,5 +1,6 @@
 # pickle object for later
 import pickle
+import pandas as pd
 
 def pickler(ob, pklFileName):
     """ 

@@ -1,3 +1,6 @@
+import pandas as pd
+from PIL import Image, ImageStat
+
 # Variation in contrast across types
 image_stats = pd.DataFrame()
 
