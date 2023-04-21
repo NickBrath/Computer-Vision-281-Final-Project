@@ -83,7 +83,7 @@ def get_optimizer():
 def create_tf_board(log_name): 
     """ Create logs for tensorboard """
     
-    path = f'../models/logs/{log_name}/'
+    path = f'../../models/logs/{log_name}/'
     
     # if os.path.exists(path):
     #     # Clear any logs from previous runs
@@ -102,7 +102,7 @@ def save_weights(model, model_name):
 def save_model(model, model_name): 
     """ Save the model for use later"""
     saved_model_path = f"/models/saved_{model_name}"
-    tf.saved_model.save(model, saved_model_path)
+    tf.keras.models.save_model(model, saved_model_path)
 
 # Confusion matrix for binary classification
 def plot_cm(labels, predictions, p=0.5):
@@ -120,7 +120,7 @@ def plot_cm(labels, predictions, p=0.5):
   print('Total Malignant Cases: ', np.sum(cm[1]))
   
   
-  def multi_label_cm(labels, predictions):
+def multi_label_cm(labels, predictions):
     cm = confusion_matrix(labels, predictions)
     plt.figure(figsize=(5,5))
     sns.heatmap(cm, annot=True, fmt="d")
@@ -128,11 +128,19 @@ def plot_cm(labels, predictions, p=0.5):
     plt.ylabel('Actual label')
     plt.xlabel('Predicted label')
 
-    print('True Negatives: ', cm[0][0])
-    print('False Positives: ', cm[0][1])
-    print('False Negatives: ', cm[1][0])
-    print('True Positives: ', cm[1][1])
-    print('Total Malignant Cases: ', np.sum(cm[1]))
+    results = {
+        'True Negatives': cm[0][0],
+        'False Positives':cm[0][1],
+        'False Negatives': cm[1][0],
+        'True Positives': cm[1][1],
+        'Total Correct Cases': cm[0][0] + cm[1][1],
+        'Total Cases': np.sum(cm)
+    }
+
+    df = pd.DataFrame.from_dict(results)
+    
+    display(df)
+    return df
   
 def plot_hist(hist): 
     """ View into model history. 

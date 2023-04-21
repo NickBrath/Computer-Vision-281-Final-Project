@@ -13,7 +13,7 @@ def create_tf_ds(file_paths, labels):
 
     return ds
 
-def augment_crop(image, label, height = 450, width = 700): 
+def augment_crop(image, label, height = 224, width = 224): 
     """ Crops image by defining a bounding box
     
     Using to make sure the images are the same size.     
@@ -157,16 +157,6 @@ def optimize_tensor(ds):
     """
     ds = ds.cache().prefetch(buffer_size=AUTOTUNE)
     return ds
-
-def augment_crop(image, label, height = 450, width = 700): 
-    """ Crops image by defining a bounding box
-    
-    Using to make sure the images are the same size.     
-    """
-    # normalize image size to a square and get smaller subsection
-    image = tf.image.random_crop(value=image, size=(height, width, 3))
-    
-    return image, label
 
 def read_ds(ds, read_fn = read_image): 
     """ Read in images to arrays and augment with predefined process"""
