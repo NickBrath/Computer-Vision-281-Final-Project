@@ -56,12 +56,7 @@ class breakHis_DataGenerator(tf.keras.utils.Sequence):
                     iaa.AdditiveGaussianNoise(loc=0, scale=(
                         0.0, 0.05*255), per_channel=0.5),
                     iaa.Multiply((0.8, 1.2), per_channel=0.2),
-
-                    iaa.Affine(rotate=0),
-                    # iaa.Affine(rotate=90),
-                    # iaa.Affine(rotate=180),
-                    # iaa.Affine(rotate=270),
-                    
+                    iaa.Affine(rotate=0)                    
                 ])], random_order=True)
 
             X = np.concatenate((X, seq.augment_images(

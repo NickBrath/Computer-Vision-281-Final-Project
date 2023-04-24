@@ -26,8 +26,7 @@ def augment_resize(image, label):
 
 def augment_grayscale(image, label):
     # turn image from RGB to grayscale
-    if tf.random.uniform((), minval=0, maxval=1) < 0.1:
-        image = tf.tile(tf.image(tf.image.rgb_to_grayscale(image), [1, 1, 3]))
+    image = tf.image.rgb_to_grayscale(image)
     
     return image, label
 
