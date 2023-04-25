@@ -172,7 +172,7 @@ def configure_for_performance(ds, batch_size = 32):
         batch_size (int, optional): _description_. Defaults to 32.
 
     Returns:
-        _type_: _description_
+        tensorflow dataset: optimized dataset ready for performance in a model
     """
     ds = ds.cache()
     ds = ds.shuffle(buffer_size=1000)

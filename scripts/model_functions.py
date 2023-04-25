@@ -129,12 +129,12 @@ def multi_label_cm(labels, predictions):
     plt.xlabel('Predicted label')
 
     results = {
-        'True Negatives': cm[0][0],
-        'False Positives':cm[0][1],
-        'False Negatives': cm[1][0],
-        'True Positives': cm[1][1],
-        'Total Correct Cases': cm[0][0] + cm[1][1],
-        'Total Cases': np.sum(cm)
+        'True Negatives': [cm[0][0]],
+        'False Positives':[cm[0][1]],
+        'False Negatives': [cm[1][0]],
+        'True Positives': [cm[1][1]],
+        'Total Correct Cases': [cm[0][0] + cm[1][1]],
+        'Total Cases': [np.sum(cm)]
     }
 
     df = pd.DataFrame.from_dict(results)
